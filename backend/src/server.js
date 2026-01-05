@@ -12,10 +12,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5001
 
-connectDB()
-
 //middleware
-app.use(express.json()); 
+app.use(express.json());
 app.use(rate_limiter);
 
 app.use((req, res, next) => {
@@ -23,10 +21,12 @@ app.use((req, res, next) => {
     next();
 })
 
+
+
 app.use("/api/notes", notes_routes)
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log("Server started on PORT ", PORT);
 
-app.listen(PORT, () => {
-    console.log("Server started on PORT ", PORT);
-
+    });
 });
-
