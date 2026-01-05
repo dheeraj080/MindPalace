@@ -1,14 +1,14 @@
-import express from "express"
 //const express = require("express")
+
+import express from "express";
+import notes_routes from"./routes/notes_routes.js"
+
 
 const app = express();
 
-app.get("/api/notes", (req, res) => {
-    res.status(200).send("You have notes");
-     
-})
+app.use("/api/notes", notes_routes)
 
 app.listen(5001, () => {
     console.log("Server started on PORT 5001");
 
-})
+});
