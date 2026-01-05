@@ -2,7 +2,7 @@ import Note from "../models/note.js";
 
 export async function get_all_notes(req, res) {
     try {
-        const notes = await Note.find().sort({createdAt:-1});
+        const notes = await Note.find().sort({ createdAt: -1 });
         res.status(200).json(notes)
     } catch (error) {
         console.error("Error in get_all_notes controller ", error);
@@ -19,7 +19,7 @@ export async function get_note_by_id(req, res) {
         console.error("Error in get_notes_by_id controller ", error);
         res.status(500).json({ message: "Internal server error" })
     }
-    
+
 }
 
 export async function create_note(req, res) {
@@ -57,9 +57,9 @@ export async function delete_note(req, res) {
     try {
         const deleted_note = await Note.findByIdAndDelete(req.params.id);
         if (!deleted_note) return res.status(404).json({ message: "Id not found" })
-        res.status(200).json({message:"Note Deleted"});
+        res.status(200).json({ message: "Note Deleted" });
 
-        
+
     } catch (error) {
         console.error("Error in delete_note controller", error);
         res.status(500).json({ message: "Internal server error" });
