@@ -8,7 +8,7 @@ const redis = Redis.fromEnv()
 
 const ratelimit = new Ratelimit({
   redis, // pass the instance, not the function
-  limiter: Ratelimit.slidingWindow(5, "20 s"),
+  limiter: Ratelimit.slidingWindow(22, "20 s"),
   // optional:
   // analytics: true,
   // prefix: "@upstash/ratelimit",
